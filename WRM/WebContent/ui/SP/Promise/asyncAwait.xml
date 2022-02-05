@@ -1,0 +1,509 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:w2="http://www.inswave.com/websquare" xmlns:xf="http://www.w3.org/2002/xforms">
+	<head meta_programId="asyncAwait" meta_programName="Async/Await 사용 예시" meta_programDesc="본 화면은 Async/Await 기술을 적용해서 Alert, Confirm, Popup, Submission을 실행하는 방법을 제공한다." meta_author="Inswave Systems" meta_date="2021.10.04">
+		<w2:type>DEFAULT</w2:type>
+		<w2:buildDate />
+		<xf:model>
+			<xf:instance>
+				<data xmlns="" />
+			</xf:instance>
+			<w2:dataCollection baseNode="map">
+				<w2:dataMap baseNode="map" id="dma_fileDesc">
+					<w2:keyInfo>
+						<w2:key id="desc" name="" dataType="text"></w2:key>
+						<w2:key id="test" name="" dataType="text"></w2:key>
+					</w2:keyInfo>
+					<w2:data use="true">
+						<desc><![CDATA[
+<pre class="textNor" style="">
+<div class="etcbox">본 화면은 Layer Alert, Confirm, Popup에서 Async/Await 기술을 적용하는 방법을 제공한다.
+Async/Await은 Internet Explorer에서는 지원하지 않습니다.
+</div>
+<div class="etc_tit">1. ALERT</div>
+  - Async/Await 기술을 적용해서 Layer Alert 창을 실행하는 방법을 제공한다.
+<div class="etc_tit">2. CONFIRM</div>
+  - Async/Await 기술을 적용해서 Layer Confirm 창을 실행하는 방법을 제공한다.
+</pre>
+<div class="etc_tit">3. 반복 ALERT</div>
+  - Async/Await 기술을 적용해서 반복문에서 Layer Alert 창을 실행하는 방법을 제공한다.
+<div class="etc_tit">4. 반복 CONFIRM</div>
+  - Async/Await 기술을 적용해서 반복문에서 Layer Confirm 창을 실행하는 방법을 제공한다.
+</pre>
+<div class="etc_tit">5. 팝업</div>
+  - Async/Await 기술을 적용해서 Layer 팝업창 실행하는 방법을 제공한다.
+<div class="etc_tit">6. Submission</div>
+  - Async/Await 기술을 적용해서 Submission을 실행하는 방법을 제공한다.
+</pre>
+						]]></desc>
+						<test><![CDATA[
+<pre class="textNor" style="">						
+<div class="etc_tit">1. 과정</div>
+1. ALERT
+1) [실행] 버튼을 클릭한다.
+
+2. CONFIRM
+1) [실행] 버튼을 클릭한다.
+
+3. 반복 ALERT
+1) [실행] 버튼을 클릭한다.
+
+4. 반복 CONFIRM
+1) [실행] 버튼을 클릭한다.
+
+5. 팝업
+1) [실행] 버튼을 클릭한다.
+
+6. Submission
+1) [실행] 버튼을 클릭한다.
+
+<div class="etc_tit">2. 결과</div>
+1. ALERT
+1) Alert 창이 순서대로 실행된다.
+
+2. CONFIRM
+1) Confirm 창이 순서대로 실행된다.
+
+3. 반복 ALERT
+1) 반복문에서 Alert 창이 순서대로 실행된다.
+
+4. 반복 CONFIRM
+1) 반복문에서 Confirm 창이 순서대로 실행된다.
+
+5. 팝업
+1) 팝업 창이 순서대로 실행된다.
+
+6. Submission
+1) Submission이 순서대로 실행된다.
+</pre>
+						]]></test>
+					</w2:data>
+				</w2:dataMap>
+				<w2:dataMap id="dlt_sampleCode" baseNode="map">
+					<w2:keyInfo>
+						<w2:key id="case1-1" name="case1-1" dataType="text"></w2:key>
+						<w2:key id="case1-2" name="case1-2" dataType="text"></w2:key>
+						<w2:key id="case2-1" name="case2-1" dataType="text"></w2:key>
+						<w2:key id="case2-2" name="case2-2" dataType="text"></w2:key>
+						<w2:key id="case3-1" name="case3-1" dataType="text"></w2:key>
+						<w2:key id="case3-2" name="case3-2" dataType="text"></w2:key>
+						<w2:key id="case4-1" name="case4-1" dataType="text"></w2:key>
+						<w2:key id="case4-2" name="case4-2" dataType="text"></w2:key>
+						<w2:key id="case5" name="case5" dataType="text"></w2:key>
+						<w2:key id="case6" name="case6" dataType="text"></w2:key>
+					</w2:keyInfo>
+					<w2:data use="true">
+						<case1-1><![CDATA[alert("Step - 1");
+console.log("Step - 1");
+
+alert("Step - 2");
+console.log("Step - 2");
+
+alert("Step - 3");
+console.log("Step - 3");]]></case1-1>
+						<case1-2><![CDATA[await com.win.alert("Step - 1");
+console.log("Step - 1");
+
+await com.win.alert("Step - 2");
+console.log("Step - 2");
+
+await com.win.alert("Step - 3");
+console.log("Step - 3");]]></case1-2>
+						<case2-1><![CDATA[var rtn = confirm("확인창");
+if (rtn) {
+	console.log("1차 확인 선택");
+	rtn = confirm("확인 선택 후 2차확인");
+} else {
+	console.log("1차 취소 선택");
+	rtn = confirm("취소 선택 후 2차확인");
+}
+
+if (rtn) {
+	console.log("2차 확인 선택");
+} else {
+	console.log("2차 취소 선택");
+}]]></case2-1>
+						<case2-2><![CDATA[if (await com.win.confirm("확인창")) {
+	console.log("1차 확인 선택");
+	var rtn = await com.win.confirm("확인 선택 후 1차확인");
+} else {
+	console.log("1차 취소 선택");
+	var rtn = await com.win.confirm("취소 선택 후 1차확인");
+}
+
+if (rtn) {
+	console.log("2차 확인 선택");
+} else {
+	console.log("2차 취소 선택");
+}]]></case2-2>
+						<case3-1><![CDATA[scwin.idx = 0; // 반복횟수
+for (var i = 0; i < 5; i++) {
+	scwin.idx++;
+	console.log(scwin.idx + " 반복횟수");
+	alert(scwin.idx + " 반복횟수");
+}
+
+console.log("최종확인");
+alert("최종확인");]]></case3-1>
+						<case3-2><![CDATA[scwin.idx = 0; // 반복횟수
+for (var i = 0; i < 5; i++) {
+	scwin.idx++
+	console.log(scwin.idx + " 반복횟수");
+	await com.win.alert(scwin.idx + " 반복횟수");
+};
+console.log("최종확인");
+await com.win.alert("최종확인");]]></case3-2>
+						<case4-1><![CDATA[var arr = [];
+var rtn;
+scwin.idx = 0;
+
+for (var i = 0; i < 3; i++) {
+	rtn = confirm(scwin.idx+1 +"확인체크");
+	if (rtn) { 
+		arr.push(scwin.idx+1 + "확인");
+	} else { 
+		arr.push(scwin.idx+1 +"취소");
+	}
+	console.log(scwin.idx + " 반복횟수");
+	scwin.idx++
+}
+
+alert(arr.join(", ") +"선택함");]]></case4-1>
+						<case4-2><![CDATA[var arr = [];
+scwin.idx = 0;
+
+for (var i = 0; i < 3; i++) {
+	if (await com.win.confirm(scwin.idx+1 +"확인체크")) {
+		arr.push(scwin.idx+1 + "확인");
+	} else {
+		arr.push(scwin.idx+1 +"취소");
+	}
+	console.log(scwin.idx + " 반복횟수");
+	scwin.idx++
+}
+await com.win.alert(arr.join(", ") +"선택함");]]></case4-2>
+						<case5><![CDATA[var data = { message : "샘플 팝업(1)을 오픈합니다." };
+		var optsions = { id : "SamplePopup1",
+						popupName : "샘플 팝업(1)",
+						modal : true,
+						width : 560, height: 400 };
+		returnParam = await com.win.openPopup("/ui/SP/Promise/messageBox1.xml", optsions, data);
+		console.log( "샘플 팝업(1) 리턴 파라미터 : " + returnParam);
+		
+		var data = { message : "샘플 팝업(2)을 오픈합니다." };
+		var optsions = { id : "SamplePopup2",
+						popupName : "샘플 팝업(2)",
+						modal : true,
+						width : 560, height: 400 };
+		returnParam = await com.win.openPopup("/ui/SP/Promise/messageBox2.xml", optsions, data);
+		console.log( "샘플 팝업(2) 리턴 파라미터 : " + com.str.serialize(returnParam));]]></case5>
+						<case6><![CDATA[await com.sbm.execute(sbm_commonGroup, { dma_search : { TYPE: "GRP_NM", CONTENT: "", IS_USE: "all"} });
+		console.log("[sbm_commonGroup] 통신 정상 완료 : " + com.str.serialize(dlt_commonGrp.getAllJSON()));
+		
+		var commonGrp = rtn.responseJSON.dlt_commonGrp;
+		if (commonGrp.length > 0) {
+			var commonGrpCd = commonGrp[0].GRP_CD;
+			await com.sbm.execute(sbm_commonCode, {dma_commonGrp : { GRP_CD : commonGrpCd } });
+			console.log("[sbm_commonCode] 통신 정상 완료 : " + com.str.serialize(dlt_commonGrp.getAllJSON()));
+		}]]></case6>
+					</w2:data>
+				</w2:dataMap>
+			</w2:dataCollection>
+			<xf:submission id="sbm_commonCode" ref='' target='data:json,dlt_commonCode' action="/common/selectCommonCodeList" method="post"
+				mediatype="application/json" encoding="UTF-8" mode="asynchronous">
+			</xf:submission>
+			<xf:submission id="sbm_commonGroup" ref='data:json,dma_search' target='data:json,dlt_commonGrp' action="/common/selectCommonGroup" method="post"
+				mediatype="application/json" encoding="UTF-8" mode="asynchronous">
+			</xf:submission>
+			<w2:workflowCollection></w2:workflowCollection>
+		</xf:model>
+		<script type="text/javascript" lazy="false"><![CDATA[
+	/**
+	 * 초기 스크립트 수행 함수 정의
+	 */
+	scwin.onpageload = function() { 
+		if (com.util.getUserAgent() === "msie") {
+			com.win.alert("Async/Await은 IE에서 지원하지 않습니다.");
+		}
+	};
+		
+	scwin.btn_trigger1_onclick = async function(e) {
+		await com.win.alert("Step - 1");
+		console.log("Step - 1");
+		
+		await com.win.alert("Step - 2");
+		console.log("Step - 2");
+		
+		await com.win.alert("Step - 3");
+		console.log("Step - 3");
+	};
+	
+	
+	scwin.btn_trigger2_onclick = async function(e) {
+		if (await com.win.confirm("확인창")) {
+			console.log("1차 확인 선택");
+			var rtn = await com.win.confirm("확인 선택 후 1차확인");
+		} else {
+			console.log("1차 취소 선택");
+			var rtn = await com.win.confirm("취소 선택 후 1차확인");
+		}
+		
+		if (rtn) {
+			console.log("2차 확인 선택");
+		} else {
+			console.log("2차 취소 선택");
+		}
+	};
+	
+	scwin.btn_trigger3_onclick = async function(e) {
+		scwin.idx = 0; // 반복횟수
+		for (var i = 0; i < 5; i++) {
+			scwin.idx++
+			console.log(scwin.idx + " 반복횟수");
+			await com.win.alert(scwin.idx + " 반복횟수");
+		};
+		console.log("최종확인");
+		await com.win.alert("최종확인");
+	};
+	
+	scwin.btn_trigger4_onclick = async function(e) {
+		var arr = [];
+		scwin.idx = 0;
+		
+		for (var i = 0; i < 3; i++) {
+			if (await com.win.confirm(scwin.idx+1 +"확인체크")) {
+				arr.push(scwin.idx+1 + "확인");
+			} else {
+				arr.push(scwin.idx+1 +"취소");
+			}
+			console.log(scwin.idx + " 반복횟수");
+			scwin.idx++
+		}
+		await com.win.alert(arr.join(", ") +"선택함");
+	};
+	
+	scwin.btn_trigger5_onclick = async function(e) {
+		var data = { message : "샘플 팝업(1)을 오픈합니다." };
+		var optsions = { id : "SamplePopup1",
+						popupName : "샘플 팝업(1)",
+						modal : true,
+						width : 560, height: 400 };
+		returnParam = await com.win.openPopup("/ui/SP/Promise/messageBox1.xml", optsions, data);
+		console.log( "샘플 팝업(1) 리턴 파라미터 : " + returnParam);
+		
+		var data = { message : "샘플 팝업(2)을 오픈합니다." };
+		var optsions = { id : "SamplePopup2",
+						popupName : "샘플 팝업(2)",
+						modal : true,
+						width : 560, height: 400 };
+		returnParam = await com.win.openPopup("/ui/SP/Promise/messageBox2.xml", optsions, data);
+		console.log( "샘플 팝업(2) 리턴 파라미터 : " + com.str.serialize(returnParam));
+	};
+	
+	scwin.btn_trigger6_onclick = async function(e) {
+		var rtn = await com.sbm.execute(sbm_commonGroup, { dma_search : { TYPE: "GRP_NM", CONTENT: "", IS_USE: "all"} });
+		console.log("[sbm_commonGroup] 통신 정상 완료 : " + com.str.serialize(rtn));
+		
+		var commonGrp = rtn.responseJSON.dlt_commonGrp;
+		if (commonGrp.length > 0) {
+			var commonGrpCd = commonGrp[0].GRP_CD;
+			var rtn = await com.sbm.execute(sbm_commonCode, {dma_commonGrp : { GRP_CD : commonGrpCd } });
+			console.log("[sbm_commonCode] 통신 정상 완료 : " + com.str.serialize(rtn));
+		}
+	};
+	
+		]]></script>
+	</head>
+	<body ev:onpageload="scwin.onpageload">
+		<xf:group class="sub_contents" id="" style="">
+			<w2:wframe id="" style="" src="../../cm/xml/contentHeader.xml" scope=""></w2:wframe>
+			<w2:wframe id="" src="../../cm/xml/contentDesc.xml" scope=""></w2:wframe>
+			<xf:group class="section" id="" style="">
+				<xf:group class="dfbox" id="" style="">
+					<w2:textbox class="df_tit" id="" label="1. ALERT" style=""></w2:textbox>
+					<xf:group class="fr" id="grp_search" style="">
+						<xf:trigger class="btn_cm" id="btn_trigger1" style="" type="button" ev:onclick="scwin.btn_trigger1_onclick">
+							<xf:label><![CDATA[실행]]></xf:label>
+						</xf:trigger>
+					</xf:group>
+				</xf:group>
+			</xf:group>
+			<xf:group class="section mt10" id="" style="">
+				<xf:group class="w2tb tb" id="grp_memberBasicDetailTop" style="width:100%;" tagname="table" adaptive="layout">
+					<w2:attributes>
+						<w2:summary></w2:summary>
+					</w2:attributes>
+					<xf:group tagname="colgroup">
+						<xf:group style="width:140px;" tagname="col"></xf:group>
+						<xf:group style="" tagname="col"></xf:group>
+						<xf:group style="width:141px;" tagname="col"></xf:group>
+						<xf:group style="" tagname="col"></xf:group>
+					</xf:group>
+					<xf:group style="" tagname="tr">
+						<xf:group class="w2tb_th" style="" tagname="th">Native&amp;nbsp;코딩방식</xf:group>
+						<xf:group class="w2tb_td" style="" tagname="td">
+							<xf:textarea class="" id="txa_CONTENT11" ref="data:dlt_sampleCode.case1-1" style="width:100%;height:160px;"></xf:textarea>
+						</xf:group>
+						<xf:group class="w2tb_th" style="" tagname="th">Async&amp;nbsp;/&amp;nbsp;Await&amp;nbsp;코딩방식</xf:group>
+						<xf:group class="w2tb_td" style="" tagname="td">
+							<xf:textarea class="" id="txa_CONTENT12" ref="data:dlt_sampleCode.case1-2" style="width:100%;height:160px;"></xf:textarea>
+						</xf:group>
+					</xf:group>
+				</xf:group>
+			</xf:group>
+			<xf:group class="section" id="" style="">
+				<xf:group class="dfbox" id="" style="">
+					<w2:textbox class="df_tit" id="" label="2. CONFIRM" style=""></w2:textbox>
+					<xf:group class="fr" id="grp_group1" style="">
+						<xf:trigger class="btn_cm" id="btn_trigger2" style="" type="button" ev:onclick="scwin.btn_trigger2_onclick">
+							<xf:label><![CDATA[실행]]></xf:label>
+						</xf:trigger>
+					</xf:group>
+				</xf:group>
+			</xf:group>
+			<xf:group class="section mt10" id="" style="">
+				<xf:group class="w2tb tb" id="grp_group2" style="width:100%;" tagname="table" adaptive="layout">
+					<w2:attributes>
+						<w2:summary></w2:summary>
+					</w2:attributes>
+					<xf:group tagname="colgroup">
+						<xf:group style="width:140px;" tagname="col"></xf:group>
+						<xf:group style="" tagname="col"></xf:group>
+						<xf:group style="width:141px;" tagname="col"></xf:group>
+						<xf:group style="" tagname="col"></xf:group>
+					</xf:group>
+					<xf:group style="" tagname="tr">
+						<xf:group class="w2tb_th" style="" tagname="th">Native&amp;nbsp;코딩방식</xf:group>
+						<xf:group class="w2tb_td" style="" tagname="td">
+							<xf:textarea class="" id="txa_CONTENT21" ref="data:dlt_sampleCode.case2-1" style="width:100%;height:160px;"></xf:textarea>
+						</xf:group>
+						<xf:group class="w2tb_th" style="" tagname="th">Async&amp;nbsp;/&amp;nbsp;Await&amp;nbsp;코딩방식</xf:group>
+						<xf:group class="w2tb_td" style="" tagname="td">
+							<xf:textarea class="" id="txa_CONTENT22" ref="data:dlt_sampleCode.case2-2" style="width:100%;height:160px;"></xf:textarea>
+						</xf:group>
+					</xf:group>
+				</xf:group>
+			</xf:group>
+			<xf:group class="section" id="" style="">
+				<xf:group class="dfbox" id="" style="">
+					<w2:textbox class="df_tit" id="" label="3. 반복 ALERT" style=""></w2:textbox>
+					<xf:group class="fr" id="grp_group3" style="">
+						<xf:trigger class="btn_cm" id="btn_trigger3" style="" type="button" ev:onclick="scwin.btn_trigger3_onclick">
+							<xf:label><![CDATA[실행]]></xf:label>
+						</xf:trigger>
+					</xf:group>
+				</xf:group>
+			</xf:group>
+			<xf:group class="section mt10" id="" style="">
+				<xf:group class="w2tb tb" id="grp_group4" style="width:100%;" tagname="table" adaptive="layout">
+					<w2:attributes>
+						<w2:summary></w2:summary>
+					</w2:attributes>
+					<xf:group tagname="colgroup">
+						<xf:group style="width:140px;" tagname="col"></xf:group>
+						<xf:group style="" tagname="col"></xf:group>
+						<xf:group style="width:141px;" tagname="col"></xf:group>
+						<xf:group style="" tagname="col"></xf:group>
+					</xf:group>
+					<xf:group style="" tagname="tr">
+						<xf:group class="w2tb_th" style="" tagname="th">Native&amp;nbsp;코딩방식</xf:group>
+						<xf:group class="w2tb_td" style="" tagname="td">
+							<xf:textarea class="" id="txa_CONTENT31" ref="data:dlt_sampleCode.case3-1" style="width:100%;height:160px;"></xf:textarea>
+						</xf:group>
+						<xf:group class="w2tb_th" style="" tagname="th">Async&amp;nbsp;/&amp;nbsp;Await&amp;nbsp;코딩방식</xf:group>
+						<xf:group class="w2tb_td" style="" tagname="td">
+							<xf:textarea class="" id="txa_CONTENT32" ref="data:dlt_sampleCode.case3-2" style="width:100%;height:160px;"></xf:textarea>
+						</xf:group>
+					</xf:group>
+				</xf:group>
+			</xf:group>
+			<xf:group class="section" id="" style="">
+				<xf:group class="dfbox" id="" style="">
+					<w2:textbox class="df_tit" id="" label="4. 반복 CONFIRM" style=""></w2:textbox>
+					<xf:group class="fr" id="grp_group5" style="">
+						<xf:trigger class="btn_cm" id="btn_trigger4" style="" type="button" ev:onclick="scwin.btn_trigger4_onclick">
+							<xf:label><![CDATA[실행]]></xf:label>
+						</xf:trigger>
+					</xf:group>
+				</xf:group>
+			</xf:group>
+			<xf:group class="section mt10" id="" style="">
+				<xf:group class="w2tb tb" id="grp_group6" style="width:100%;" tagname="table" adaptive="layout">
+					<w2:attributes>
+						<w2:summary></w2:summary>
+					</w2:attributes>
+					<xf:group tagname="colgroup">
+						<xf:group style="width:140px;" tagname="col"></xf:group>
+						<xf:group style="" tagname="col"></xf:group>
+						<xf:group style="width:141px;" tagname="col"></xf:group>
+						<xf:group style="" tagname="col"></xf:group>
+					</xf:group>
+					<xf:group style="" tagname="tr">
+						<xf:group class="w2tb_th" style="" tagname="th">Native&amp;nbsp;코딩방식</xf:group>
+						<xf:group class="w2tb_td" style="" tagname="td">
+							<xf:textarea class="" id="txa_CONTENT41" ref="data:dlt_sampleCode.case4-1" style="width:100%;height:160px;"></xf:textarea>
+						</xf:group>
+						<xf:group class="w2tb_th" style="" tagname="th">Async&amp;nbsp;/&amp;nbsp;Await&amp;nbsp;코딩방식</xf:group>
+						<xf:group class="w2tb_td" style="" tagname="td">
+							<xf:textarea class="" id="txa_CONTENT42" ref="data:dlt_sampleCode.case4-2" style="width:100%;height:160px;"></xf:textarea>
+						</xf:group>
+					</xf:group>
+				</xf:group>
+			</xf:group>
+			<xf:group class="section" id="" style="">
+				<xf:group class="dfbox" id="" style="">
+					<w2:textbox class="df_tit" id="" label="5. 팝업" style=""></w2:textbox>
+					<xf:group class="fr" id="grp_group7" style="">
+						<xf:trigger class="btn_cm" id="btn_trigger5" style="" type="button" ev:onclick="scwin.btn_trigger5_onclick">
+							<xf:label><![CDATA[실행]]></xf:label>
+						</xf:trigger>
+					</xf:group>
+				</xf:group>
+			</xf:group>
+			<xf:group class="section mt10" id="" style="">
+				<xf:group class="w2tb tb" id="grp_group8" style="width:100%;" tagname="table" adaptive="layout">
+					<w2:attributes>
+						<w2:summary></w2:summary>
+					</w2:attributes>
+					<xf:group tagname="colgroup">
+						<xf:group style="width:140px;" tagname="col"></xf:group>
+						<xf:group style="" tagname="col"></xf:group>
+					</xf:group>
+					<xf:group style="" tagname="tr">
+						<xf:group class="w2tb_th" style="" tagname="th">Async&amp;nbsp;/&amp;nbsp;Await&amp;nbsp;코딩방식</xf:group>
+						<xf:group class="w2tb_td" style="" tagname="td">
+							<xf:textarea class="" id="txa_CONTENT50" ref="data:dlt_sampleCode.case5" style="width:100%;height:160px;"></xf:textarea>
+						</xf:group>
+					</xf:group>
+				</xf:group>
+			</xf:group>
+			<xf:group class="section" id="" style="">
+				<xf:group class="dfbox" id="" style="">
+					<w2:textbox class="df_tit" id="" label="6. Submission" style=""></w2:textbox>
+					<xf:group class="fr" id="grp_group9" style="">
+						<xf:trigger class="btn_cm" id="btn_trigger6" style="" type="button" ev:onclick="scwin.btn_trigger6_onclick">
+							<xf:label><![CDATA[실행]]></xf:label>
+						</xf:trigger>
+					</xf:group>
+				</xf:group>
+			</xf:group>
+			<xf:group class="section mt10" id="" style="">
+				<xf:group class="w2tb tb" id="grp_group10" style="width:100%;" tagname="table" adaptive="layout">
+					<w2:attributes>
+						<w2:summary></w2:summary>
+					</w2:attributes>
+					<xf:group tagname="colgroup">
+						<xf:group style="width:140px;" tagname="col"></xf:group>
+						<xf:group style="" tagname="col"></xf:group>
+					</xf:group>
+					<xf:group style="" tagname="tr">
+						<xf:group class="w2tb_th" style="" tagname="th">Async&amp;nbsp;/&amp;nbsp;Await&amp;nbsp;코딩방식</xf:group>
+						<xf:group class="w2tb_td" style="" tagname="td">
+							<xf:textarea class="" id="txa_CONTENT60" ref="data:dlt_sampleCode.case6" style="width:100%;height:160px;"></xf:textarea>
+						</xf:group>
+					</xf:group>
+				</xf:group>
+			</xf:group>
+		</xf:group>
+	</body>
+</html>

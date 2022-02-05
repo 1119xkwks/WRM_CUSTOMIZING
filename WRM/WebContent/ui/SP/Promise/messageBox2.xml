@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:w2="http://www.inswave.com/websquare" xmlns:xf="http://www.w3.org/2002/xforms">
+	<head>
+		<w2:buildDate />
+		<xf:model>
+			<xf:instance>
+				<data xmlns="" />
+			</xf:instance>
+			<w2:dataCollection>
+			</w2:dataCollection>
+		</xf:model>
+		<script type="text/javascript" lazy="false"><![CDATA[
+	
+	scwin.onpageload = function() {
+		try {
+			var message = com.data.getParameter("message") || "메시지 없음";
+			console.log(message);
+		} catch(ex) {
+			console.error(ex);
+		}
+	};	
+	
+	scwin.btn_confirm_onclick = function(e) {
+		try {
+			com.win.setCallbackParam({ paramData : "H00001" });
+			com.win.closePopup();
+		} catch(ex) {
+			console.error(ex);
+		}
+	};
+]]></script>
+	</head>
+	<body ev:onpageload="scwin.onpageload">
+		<xf:group id="" class="pop_contents">
+			<xf:group tagname="table" style="width:100%;" id="" class="w2tb">
+				<w2:attributes>
+					<w2:summary></w2:summary>
+				</w2:attributes>
+				<xf:group tagname="caption"></xf:group>
+				<xf:group tagname="colgroup">
+					<xf:group tagname="col" style="width:25.00%;"></xf:group>
+					<xf:group tagname="col" style="width:25.00%"></xf:group>
+					<xf:group tagname="col" style="width:25.00%;"></xf:group>
+					<xf:group tagname="col" style="width:25.00%"></xf:group>
+				</xf:group>
+				<xf:group tagname="tr" style="">
+					<xf:group tagname="th" style="" class="w2tb_th">이름<w2:attributes>
+							<w2:scope>row</w2:scope>
+						</w2:attributes></xf:group>
+					<xf:group tagname="td" style="" class="w2tb_td"></xf:group>
+					<xf:group tagname="th" style="" class="w2tb_th">나이<w2:attributes>
+							<w2:scope>row</w2:scope>
+						</w2:attributes></xf:group>
+					<xf:group tagname="td" style="" class="w2tb_td"></xf:group>
+				</xf:group>
+				<xf:group tagname="tr" style="">
+					<xf:group tagname="th" style="" class="w2tb_th">연락처<w2:attributes>
+							<w2:scope>row</w2:scope>
+						</w2:attributes></xf:group>
+					<xf:group tagname="td" style="" class="w2tb_td"></xf:group>
+					<xf:group tagname="th" style="" class="w2tb_th">성별<w2:attributes>
+							<w2:scope>row</w2:scope>
+						</w2:attributes></xf:group>
+					<xf:group tagname="td" style="" class="w2tb_td"></xf:group>
+				</xf:group>
+				<xf:group tagname="tr" style="">
+					<xf:group tagname="th" style="" class="w2tb_th">주소<w2:attributes>
+							<w2:scope>row</w2:scope>
+						</w2:attributes></xf:group>
+					<xf:group tagname="td" style="" class="w2tb_td"></xf:group>
+					<xf:group tagname="th" style="" class="w2tb_th">점수<w2:attributes>
+							<w2:scope>row</w2:scope>
+						</w2:attributes></xf:group>
+					<xf:group tagname="td" style="" class="w2tb_td"></xf:group>
+				</xf:group>
+			</xf:group>
+			<xf:group class="btnbox" id="" style="">
+				<xf:group class="fr" id="">
+					<xf:trigger class="btn_cm" id="btn_confirm" style="" type="button" ev:onclick="scwin.btn_confirm_onclick">
+						<xf:label><![CDATA[확인]]></xf:label>
+					</xf:trigger>
+				</xf:group>
+			</xf:group>
+		</xf:group>
+	</body>
+</html>

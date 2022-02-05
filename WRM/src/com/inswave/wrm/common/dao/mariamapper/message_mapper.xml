@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.inswave.wrm.common.dao.MessageDao">
+	
+	<select id="selectMessageList" resultType="Map" parameterType="Map">
+		SELECT LANG, MSG_KEY, MSG_CONTENTS, IS_USE
+		  FROM BM_LANG_MSG
+		<where>
+			<if test="LANG != null and LANG != '' and LANG != 'all'">
+				AND LANG LIKE #{LANG}
+			</if>
+			<if test="MSG_KEY != null and MSG_KEY != ''">
+				AND MSG_KEY LIKE CONCAT('%', #{MSG_KEY}, '%')
+			</if>
+			<if test="MSG_CONTENTS != null and MSG_CONTENTS != ''">
+				AND MSG_CONTENTS LIKE CONCAT('%', #{MSG_CONTENTS}, '%')
+			</if>
+			<if test="IS_USE != null and IS_USE != '' and IS_USE != 'all'">
+				AND IS_USE = #{IS_USE}
+			</if>
+		</where>
+	</select>
+	
+	<insert id="insertMessage" parameterType="Map">
+		INSERT INTO BM_LANG_MSG (LANG, MSG_KEY, MSG_CONTENTS, IS_USE)
+		VALUES (#{LANG}, #{MSG_KEY}, #{MSG_CONTENTS}, #{IS_USE})
+	</insert>
+	
+	<update id="updateMessage" parameterType="Map">
+		UPDATE BM_LANG_MSG
+		   SET MSG_CONTENTS = #{MSG_CONTENTS}, IS_USE = #{IS_USE}
+		 WHERE MSG_KEY = #{MSG_KEY}
+		   AND LANG = #{LANG}
+	</update>
+	
+	<delete id="deleteMessage" parameterType="Map">
+		DELETE FROM BM_LANG_MSG 
+		 WHERE MSG_KEY = #{MSG_KEY} AND LANG = #{LANG}
+	</delete>
+	
+	<select id="selectAllMessage" resultType="Map" parameterType="Map">
+		SELECT MSG_KEY, MSG_CONTENTS
+		  FROM BM_LANG_MSG
+		 WHERE IS_USE = 'Y'
+		<if test="LANG != null and LANG != ''">
+			AND LANG = #{LANG}
+		</if>
+	</select>
+	
+</mapper>
