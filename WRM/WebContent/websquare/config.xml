@@ -64,6 +64,31 @@
 		]]></initScript>
 		<postScript value="true"><![CDATA[
 			gcm.win.processCommonData($p);
+			
+			//버튼 권한 처리
+			(function() {
+				//검색 버튼 및 검색 박스
+				$('.tabc_layout .btn_cm.sch').promise().done(function() {
+					console.log('size.xml - promise().done() - 검색 버튼');
+					gcm.win.authInit();
+				});
+				$('.tabc_layout .shbox').promise().done(function() {
+					console.log('size.xml - promise().done() - 검색 박스');
+					gcm.win.authInit();
+				});
+		
+				//등록, 취소, 저장 버튼
+				$('.tabc_layout .btn_cm:not(.sch, .xls_down)').promise().done(function() {
+					console.log('size.xml - promise().done() - 등록, 취소, 저장 버튼');
+					gcm.win.authInit();
+				});
+		
+				//엑셀 다운로드 버튼
+				$('.tabc_layout .btn_cm.xls_down').promise().done(function() {
+					console.log('size.xml - promise().done() - 엑셀 다운로드 버튼');
+					gcm.win.authInit();
+				});
+			})();
 		]]></postScript>
 	</wframe>
 

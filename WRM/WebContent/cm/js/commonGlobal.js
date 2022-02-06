@@ -305,10 +305,14 @@ gcm.win.showToastMessage = function(messageType, message) {
  * @author 권영택
  * @example
  * 
- * let auth = getCurrMenuAuth();
+ * let auth = gcm.win.getCurrMenuAuth();
  * console.log( auth );
  */
-scwin.getCurrMenuAuth = function() {
+gcm.win.getCurrMenuAuth = function() {
+	if(!gcm.menuComp || !gcm.programAuthorityComp) {
+		return false;
+	}
+	
 	let menuCd = $w.getParameter("menuCd");
 	
 	let matchedMenuList = gcm.menuComp.getMatchedJSON('MENU_CD', menuCd);
@@ -326,10 +330,14 @@ scwin.getCurrMenuAuth = function() {
  * @author 권영택
  * @example
  * 
- * let auth = authInit();
+ * let auth = gcm.win.authInit();
  */
-scwin.authInit = function() {
-	let auth = scwin.getCurrMenuAuth();
+gcm.win.authInit = function() {
+	let auth = gcm.win.getCurrMenuAuth();
+	
+	if(!auth) {
+		return false;
+	}
 	
 	let isAuthSelect = auth.IS_AUTH_SELECT == 'Y';
 	let isAuthSave = auth.IS_AUTH_SAVE == 'Y';
@@ -425,12 +433,8 @@ gcm.win.openMenu = function($p, menuNm, url, menuCode, paramObj, option) {
 					data : data
 				}
 			};
-
+			
 			$p.top().tac_layout.addTab(menuCode, tabObj, contObj);
-			
-			
-			scwin.authInit();
-			
 
 			// tabObj의 openAction의 last값의 동작 특이 사항으로 선택이 되지 않은 경우 선택하는 로직 추가
 			if ($p.top().tac_layout.getSelectedTabID() !== menuCode) {
