@@ -300,6 +300,55 @@ gcm.win.showToastMessage = function(messageType, message) {
 
 
 /**
+ * 현재 메뉴의 권한 정보를 가져온다
+ * @date 2022.02.06
+ * @author 권영택
+ * @example
+ * 
+ * let auth = getCurrMenuAuth();
+ * console.log( auth );
+ */
+scwin.getCurrMenuAuth = function() {
+	let menuCd = $w.getParameter("menuCd");
+	
+	let matchedMenuList = gcm.menuComp.getMatchedJSON('MENU_CD', menuCd);
+	let menu = matchedMenuList && matchedMenuList.length && matchedMenuList[0] || false;
+	
+	let matchedAuthList = gcm.programAuthorityComp.getMatchedJSON('PROGRAM_CD', menu && menu.PROGRAM_CD || '');
+	let auth = matchedAuthList && matchedAuthList.length && matchedAuthList[0] || false;
+	
+	return auth;
+};
+
+/**
+ * 현재 메뉴의 권한 정보 기반으로, 버튼을 가린다.
+ * @date 2022.02.06
+ * @author 권영택
+ * @example
+ * 
+ * let auth = authInit();
+ */
+scwin.authInit = function() {
+	let auth = scwin.getCurrMenuAuth();
+	
+	let isAuthSelect = auth.IS_AUTH_SELECT == 'Y';
+	let isAuthSave = auth.IS_AUTH_SAVE == 'Y';
+	let isAuthExcel = auth.IS_AUTH_EXCEL == 'Y';
+	
+	//검색 버튼 및 검색 박스
+	$('.tabc_layout .btn_cm.sch').css('display', isAuthSelect ? 'inline-block' : 'none');
+	$('.tabc_layout .shbox').css('display', isAuthSelect ? 'block' : 'none');
+	
+	//등록, 취소, 저장 버튼
+	$('.tabc_layout .btn_cm:not(.sch, .xls_down)').css('display', isAuthSave ? 'inline-block' : 'none');
+	
+	//엑셀 다운로드 버튼
+	$('.tabc_layout .btn_cm.xls_down').css('display', isAuthExcel ? 'inline-block' : 'none');
+};
+
+
+
+/**
  * 특정 메뉴를 오픈한다.
  * @date 2021.02.16
  * @param {String} menuNm 메뉴명 - 단위화면에서 해당 값으로 title을 설정한다.
@@ -378,6 +427,10 @@ gcm.win.openMenu = function($p, menuNm, url, menuCode, paramObj, option) {
 			};
 
 			$p.top().tac_layout.addTab(menuCode, tabObj, contObj);
+			
+			
+			scwin.authInit();
+			
 
 			// tabObj의 openAction의 last값의 동작 특이 사항으로 선택이 되지 않은 경우 선택하는 로직 추가
 			if ($p.top().tac_layout.getSelectedTabID() !== menuCode) {
@@ -437,7 +490,6 @@ gcm.win.openMenu = function($p, menuNm, url, menuCode, paramObj, option) {
 					data : data
 				}
 			};
-			
 			$p.top().wfm_layout.setSrc(url, param);
 		}
 	}

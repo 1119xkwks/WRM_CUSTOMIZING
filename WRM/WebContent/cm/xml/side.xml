@@ -102,6 +102,7 @@
 		$p.parent().wfm_header.getWindow().txt_empNm.setValue(dma_defInfo.get("EMP_NM"));
 		trv_menu.expandNode(0, true);
 		gcm.menuComp = dlt_menu; //전체 공통 영역에 메뉴리스트 데이터 변수 설정
+		gcm.programAuthorityComp = dlt_programAuthority; //전체 공통 영역에 메뉴리스트 데이터 변수 설정
 		var menuCd = $w.getParameter("menuCd");
 		
 		if (com.util.isEmpty(menuCd) === false) {
